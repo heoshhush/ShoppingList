@@ -1,0 +1,83 @@
+body {
+  background-color: lightgrey;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to right, lavender, #3498db);
+  border-radius: 10px;
+  width: 30%;
+  height: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.list {
+  background-color: whitesmoke;
+  width: 100%;
+  height: 500px;
+  padding: 0;
+  margin-bottom: 0;
+  list-style: none;
+  padding: auto;
+}
+.list > * {
+  padding: 7px;
+  padding-bottom: 0;
+}
+
+.title {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.shopping-form {
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.input-text {
+  width: 100%;
+  padding: 0;
+  border: none;
+  height: 30px;
+  outline: none;
+  font-size: 15px;
+}
+
+.input-button {
+  height: 40px;
+  border: none;
+  outline: none;
+  width: 40px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border-radius: 100%;
+  font-size: 50px;
+  text-align: center;
+  font-weight: bolder;
+  line-height: 40px;
+  padding: 0px;
+}
+
+.input-button:focus {
+  transform: rotate(90deg);
+  transition: transform 200ms;
+}
+
+.invisible {
+  display: none;
+}
+.li {
+  width: 100%;
+}
+.item {
+  display: inline-block;
+  width: 90%;
+}
