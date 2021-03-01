@@ -1,46 +1,58 @@
-const inputText = document.querySelector('.input-text');
-const list = document.querySelector('.list');
-const shoppingForm = document.querySelector('.shopping-form');
-const inputButton = document.querySelector('.input-button');
+const items = document.querySelector('.items');
+const input = document.querySelector('.footer__input');
+const addBtn = document.querySelector('.footer__button');
 
-function userInput(event){
-    event.preventDefault();
-    const value = inputText.value;
+function onAdd(){
 
-    //li 만들기
-    const li = document.createElement('li');
-    li.setAttribute('class','li');
-    const item = document.createElement('span');
-    item.setAttribute('class','item');
-    item.innerText = value;
+    const text = input.value;
+    if(text === ''){
+        input.focus();
+        return
+    }
+    console.log(text);
 
-    //삭제 버튼 만들기
-
-    const delBtn = document.createElement('button');
-    delBtn.innerText = '✖';
-
-    //li와 삭제버튼 삽입하기
-    li.appendChild(item);
-    li.append(delBtn);
-    list.appendChild(li);
-
-    //style 조정하기
-    
-    // span은 inline element라, width를 조절할 수 없음. 그래서 
-    // inline-block element로 만들어준다!!!
-
-    // input type = text의 칸이 입력시 비워지도록 함
-    inputText.value ='';
-
-    // 삭제 버튼 클릭시 해당 list 삭제 되도록 함
-    delBtn.addEventListener('click',() => {
-        li.classList.add('invisible');
-    });
+    const item = createItem(text); 
+    items.appendChild(item);
+    item.scrollIntoView({block: 'center'});
+    input.value = '';
+    input.focus(); 
 }
 
-function init(){
-shoppingForm.addEventListener('submit', event => userInput(event));
-inputButton.addEventListener('click', event => userInput(event));
+let id = 0 ;
+function createItem(text) {
+    const itemRow = document.createElement('li');
+    itemRow.setAttribute('class','item__row');
+    itemRow.setAttribute('data-id',id);
+    itemRow.innerHTML = `
+    <div class="item">
+        <span class="item__name">${text}</span>
+        <button class="item__delete" data-id = ${id}>
+            <i class="fas fa-trash-alt" data-id = ${id}></i>
+        </button>
+    </div>
+    <div class="item__divider">
+    </div>
+    `;
+    return itemRow;
+    i++;
 }
 
-init();
+
+
+addBtn.addEventListener('click', ()=> {
+    onAdd();
+})
+
+input.addEventListener('keypress',(event)=>{
+    if(event.key ==='Enter'){
+        onAdd();
+    }
+})
+
+items.addEventListener('click', (event) => {
+    const id  = event.target.dataset.id;
+    if(id){
+    const toBeDelete = document.querySelector(`.item__row[data-id="${id}"]`);
+    toBeDelete.remove();
+}
+})
